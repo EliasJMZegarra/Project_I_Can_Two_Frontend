@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UsuarioComponent } from './component/usuario/usuario.component';
 import { RolComponent } from './component/rol/rol.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { UsuarioListarComponent } from './component/usuario/usuario-listar/usuario-listar.component';
 import { CreateEditComponent } from './component/usuario/create-edit/create-edit.component';
 import { RolListarComponent } from './component/rol/rol-listar/rol-listar.component';
@@ -24,7 +24,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { NavbarComponent } from './component/navbar/navbar.component';
-import { MatGridListModule } from '@angular/material/grid-list'
+import { MatGridListModule } from '@angular/material/grid-list';
+import { DialogoComponent } from './component/usuario/usuario-listar/dialogo/dialogo.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +35,7 @@ import { MatGridListModule } from '@angular/material/grid-list'
     CreateEditComponent,
     RolListarComponent,
     NavbarComponent,
+    DialogoComponent,
     
   ],
   imports: [
@@ -58,7 +60,8 @@ import { MatGridListModule } from '@angular/material/grid-list'
   ],
   providers: [
     provideClientHydration(),
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    
   ],
   bootstrap: [AppComponent]
 })

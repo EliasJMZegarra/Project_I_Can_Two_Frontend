@@ -5,6 +5,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { UsuarioService } from '../../../service/usuario.service';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogoComponent } from './dialogo/dialogo.component';
 
 @Component({
   selector: 'app-usuario-listar',
@@ -17,10 +19,20 @@ export class UsuarioListarComponent implements OnInit{
   dataSource = new MatTableDataSource<Usuario>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  constructor(private usuarioService: UsuarioService, private roter:Router){console.log("Load Constructor");}
+  constructor(private usuarioService: UsuarioService, private roter:Router, private dialog:MatDialog){console.log("Load Constructor");}
   ngOnInit(): void {
     this.usuarioService.list().subscribe(data =>this.dataSource.data = data);
     this.usuarioService.getList().subscribe(data => {this.dataSource.data = data});
+  }
+  openDialog(id:string){
+    const dialogRef = this.dialog.open(DialogoComponent);
+    dialogRef.afterClosed().subscribe(result =>{
+      if(result){
+        this.delete(id);
+      }else{
+        console.log("FALSE");
+      }
+    });
   }
   filtrar(e:any){
     this.dataSource.filter = e.target.value.trim();

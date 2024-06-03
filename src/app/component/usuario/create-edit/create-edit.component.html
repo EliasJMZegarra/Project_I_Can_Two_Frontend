@@ -1,1 +1,49 @@
-<p>create-edit works!</p>
+
+<div>
+    <div class="container">
+      <h1>Usuarios</h1>
+      <form [formGroup]="form" (submit)="aceptar()">
+  
+      <mat-form-field class="example-full-width">
+        <mat-label>Id</mat-label>
+        <input matInput placeholder="Id" formControlName="id">
+      </mat-form-field>
+  
+      <br>
+  
+      <mat-form-field class="example-full-width">
+        <mat-label>Nombre</mat-label>
+        <input matInput required placeholder="Nombre" formControlName="nombre">
+      </mat-form-field>
+      <br>
+  
+      <mat-form-field class="example-full-width">
+        <mat-label>Edad</mat-label>
+        <input type="number" matInput required placeholder="Edad" formControlName="edad">
+      </mat-form-field>
+      <br>
+      
+      <mat-form-field class="example-full-width">
+        <mat-label>Correo</mat-label>
+        <input matInput required placeholder="Correo" formControlName="correo">
+      </mat-form-field>
+      <br>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Rol</mat-label>
+        <mat-select formControlName="rol" [(value)]="idRolSeleccionado" required>
+          <mat-option *ngFor="let r of lista" [value]="r.id">
+            {{r.tipoRol}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+  
+        <button mat-raised-button color="primary" (click)="aceptar()">Aceptar</button>
+  
+        <button mat-raised-button color="warn" routerLink="/books">Cancelar</button>
+      <p>{{mensaje}}</p>
+      </form>
+    </div>
+  </div>
+
